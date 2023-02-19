@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="giadog" name="servo_test_node" type="servo_test" output="screen" >
+  </node>
+</launch>

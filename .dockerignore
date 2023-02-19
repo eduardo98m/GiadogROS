@@ -1,0 +1,20 @@
+# Ignorar archivos y directorios generados por ROS
+build/
+devel/
+install/
+
+# Ignorar archivos y directorios generados por Python
+__pycache__/
+*.pyc
+
+# Ignorar otros archivos y directorios innecesarios
+*.log
+*.bak
+*.swp
+.DS_Store
+
+# Ignorar los archivos de Docker y git
+Dockerfile
+docker-compose.yml
+.git
+.gitignore
