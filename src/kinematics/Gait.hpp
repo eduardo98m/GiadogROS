@@ -1,21 +1,9 @@
-/*
-    Authors: Amin Arriaga, Eduardo Lopez
-    Project: Graduation Thesis: GIAdog
-
-    Gait function for the giadog robot.
-    
-    References:
-    -----------
-        * Learning Quadrupedal Locomotion over Challenging Terrain.
-          JOONHO LEE,, JEMIN HWANGBO, LORENZ WELLHAUSEN,VLADLEN KOLTUN, AND MARCO HUTTER.
-          https://arxiv.org/pdf/2010.11251.pdf
-
-*/
+#pragma once
 
 #include <cmath>
 #include <math.h>
 #include <Eigen/Dense>
-#include "../RobotConfig.hpp"
+#include "../utils/config.hpp"
 
 /**
  * @brief 
@@ -26,25 +14,25 @@
  * @return std::pair<double, double> 
  */
 std::pair<double, double> FTG(
-    double sigma_i_0,
-    double t,
-    double f_i
+  double sigma_i_0,
+  double t,
+  double f_i
 ) { 
-    double H = 0.2 ;
-    double position_z = 0.0;
-    double sigma_i, k, h;
+  double H = 0.2 ;
+  double position_z = 0.0;
+  double sigma_i, k, h;
 
-    sigma_i = std::fmod(sigma_i_0 + t * (f_i), (2 * M_PI));
-    k       = 2 * (sigma_i - M_PI) / M_PI;
-    h       = 0.6 * H;
+  sigma_i = std::fmod(sigma_i_0 + t * (f_i), (2 * M_PI));
+  k       = 2 * (sigma_i - M_PI) / M_PI;
+  h       = 0.6 * H;
 
-    bool condition_1 = (k <= 1 && k >= 0);
-    bool condition_2 = (k >= 1 && k <= 2);
+  bool condition_1 = (k <= 1 && k >= 0);
+  bool condition_2 = (k >= 1 && k <= 2);
 
-    position_z += h * (-2 * k * k * k + 3 * k * k)  * condition_1;
-    position_z += h * (2 * k * k * k - 9 * k * k + 12 * k - 4) * condition_2;
+  position_z += h * (-2 * k * k * k + 3 * k * k)  * condition_1;
+  position_z += h * (2 * k * k * k - 9 * k * k + 12 * k - 4) * condition_2;
 
-    return {position_z, sigma_i}; 
+  return {position_z, sigma_i}; 
 }
 
 /**
@@ -53,15 +41,10 @@ std::pair<double, double> FTG(
  * 
  * @param t Current time.
  * @param frequencies Vector of the four frequencies offsets of the four legs.
- * @param config 
  * @return std::tuple<Eigen::Vector4d, Eigen::Vector4d, Eigen::Vector4d, Eigen::Vector4d> 
  */
 std::tuple<Eigen::Vector4d, Eigen::Vector4d, Eigen::Vector4d, Eigen::Vector4d, Eigen::Vector4d> 
-compute_foot_trajectories(
-    double t, 
-    Eigen::Vector4d frequencies,
-    RobotConfig *config
-) {   
+compute_foot_trajectories(double t, Eigen::Vector4d frequencies) { 
     // The foot phases are set to a trot gait.
     //double* sigma_0[4] = config->sigma_0;
     Eigen::Vector4d FTG_frequencies       = Eigen::Vector4d::Zero();
@@ -72,9 +55,9 @@ compute_foot_trajectories(
 
     for (int i = 0; i < 4; i++) 
     {
-        double f_i = frequencies[i] + config->base_frequency;
+        double f_i = frequencies[i] + Config::ROBOT.BASE_FREQUENCY;
         std::pair<double, double>  
-        ftg_result               = FTG(config->sigma_0[i], t, f_i);
+        ftg_result               = FTG(Config::ROBOT.SIGMA_0[i], t, f_i);
         target_foot_positions(i) = ftg_result.first;
         double sigma_i           = ftg_result.second;
         FTG_frequencies[i]       = f_i;

@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="giadog" name="joystick_node" type="joystick" output="screen" >
+  </node>
+</launch>

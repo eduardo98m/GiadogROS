@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="giadog" name="servo_translate_node" type="servo_translate" output="screen" >
+  </node>
+</launch>

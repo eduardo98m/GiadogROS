@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="giadog" name="imu_test_node" type="imu_test" output="screen" >
+  </node>
+</launch>

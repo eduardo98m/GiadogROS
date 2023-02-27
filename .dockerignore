@@ -13,8 +13,9 @@ __pycache__/
 *.swp
 .DS_Store
 
-# Ignorar los archivos de Docker y git
+# Ignorar los archivos de Docker, git y VSCode
 Dockerfile
 docker-compose.yml
 .git
 .gitignore
+.vscode

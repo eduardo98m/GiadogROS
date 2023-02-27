@@ -1,0 +1,79 @@
+# ------------------------ ARCHIVO DE CONFIGURACION ------------------------ #
+
+SERVOS:
+  N_SERVOS  : 12
+  PWM_FREQ  : 50
+  MS_CENTER : 1500 # microseconds
+  MS_MIN    : 500  # microseconds
+  MS_MAX    : 2500 # microseconds
+  DIRECTION : 1
+  DELTA     : 0.02
+  TRANSLATE : true
+  SERVOS:
+    # Left front leg
+    - MIN_ANGLE  : 160
+      MAX_ANGLE  : 215
+      INIT_ANGLE : 180
+
+    - MIN_ANGLE  : 110
+      MAX_ANGLE  : 230
+      INIT_ANGLE : 180
+
+    - MIN_ANGLE  : 50
+      MAX_ANGLE  : 110
+      INIT_ANGLE : 100
+
+    # Right front leg
+    - MIN_ANGLE  : 145
+      MAX_ANGLE  : 200
+      INIT_ANGLE : 180
+
+    - MIN_ANGLE  : 130
+      MAX_ANGLE  : 250
+      INIT_ANGLE : 140
+
+    - MIN_ANGLE  : 250
+      MAX_ANGLE  : 310
+      INIT_ANGLE : 260
+
+    # Left back leg 
+    - MIN_ANGLE  : 160
+      MAX_ANGLE  : 215
+      INIT_ANGLE : 180
+
+    - MIN_ANGLE  : 200
+      MAX_ANGLE  : 250
+      INIT_ANGLE : 220
+
+    - MIN_ANGLE  : 50
+      MAX_ANGLE  : 110
+      INIT_ANGLE : 100
+
+    # Right back leg
+    - MIN_ANGLE  : 145
+      MAX_ANGLE  : 200
+      INIT_ANGLE : 180
+
+    - MIN_ANGLE  : 120
+      MAX_ANGLE  : 170
+      INIT_ANGLE : 140
+
+    - MIN_ANGLE  : 250
+      MAX_ANGLE  : 310
+      INIT_ANGLE : 260
+
+
+ROBOT:
+  CARTESIAN_DELTA : true
+  ANGULAR_DELTA   : false
+  BASE_FREQUENCY  : 10       # Hz
+  H               : 0.2      # Maxima altura de la pata [m]
+  H_OFF           : 0.063    # [m]
+  V_OFF           : 0.008    # [m]
+  THIGH_LEN       : 0.11058  # [m]
+  SHANK_LEN       : 0.1265   # [m]
+  LEG_SPAN        : 0.2442   # [m]
+  CONTROL_DT      : 0.01     # [s]
+  SIGMA_0         : [0.0, 0.0, 0.0, 0.0]#[0.0, 3.142, 3.142, 0.0] # [RAD
+
+

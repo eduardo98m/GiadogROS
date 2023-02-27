@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="giadog" name="gait_node" type="gait" output="screen" >
+  </node>
+</launch>
