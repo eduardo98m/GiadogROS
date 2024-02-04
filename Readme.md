@@ -1,6 +1,6 @@
 # GiadogROS
 <p align="center">
-  <img src="logo.png" alt="GIADogRos Logo" width="20%"/>
+  <img src="logo.png" alt="GIADogRos Logo" width="50%"/>
 </p>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
